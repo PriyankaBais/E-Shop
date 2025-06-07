@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E-Shop - Home</title>
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+
+            flex-direction: column;
+        }
+
+        a {
+            color: #0077ff;
+            text-decoration: none;
+
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-grow: 1;
+        }
+
+        /* Header */
+        header {
+            background-color: #0a2540;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            font-weight: 600;
+        }
+
+        nav a {
+            color: white;
+            font-size: 1rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #0077ff;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            height: 400px;
+
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+            margin-bottom: 3rem;
+            border-radius: 8px;
+            padding: 0 2rem;
+            transition: transform 0.5s;
+        }
+
+        .hero:hover {
+            transform: scale(1.02);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .btn-primary {
+            background-color: #0077ff;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            width: max-content;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 12px rgb(0 119 255 / 0.5);
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgb(0 86 179 / 0.7);
+        }
+
+        /* Featured Products Section */
+        .featured {
+            margin-bottom: 3rem;
+        }
+
+        .featured h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: #0a2540;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 12px rgb(0 0 0 / 0.1);
+            transition: box-shadow 0.3s, transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1rem 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #0a2540;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0077ff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a2540;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo" onclick="location.href='index.html'">E-Shop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero" aria-label="Shop hero banner">
+            <h1>Discover Your Next Favorite Item</h1>
+            <p>Shop top-quality products at unbeatable prices. Fast shipping & easy returns!</p>
+            <button class="btn-primary" onclick="location.href='products.html'">Shop Now</button>
+        </section>
+
+        <section class="featured" aria-label="Featured Products">
+            <h2>Featured Products</h2>
+            <div class="product-grid" id="featured-products">
+                <!-- Featured products inserted by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 E-Shop. All rights reserved.
+    </footer>
+
+    <script>
+        const featuredProducts = [
+            {
+                id: 1,
+                name: 'Wireless Headphones',
+                price: 69.99,
+                image: 'https://www.energysistem.com/cdn/shop/files/principal_2000_f2bcf03d-0704-4777-bd8a-eff808a2de7b.jpg?v=1748012652'
+            },
+            {
+                id: 2,
+                name: 'Smart Watch',
+                price: 149.99,
+                image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQAwwMBEQACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAABAgADBAUHBgj/xAA7EAABAwMDAQUFBgQGAwAAAAABAAIDBAURBhIhMQcTQVFhFHGBkbEiMkJSocEjM3LhFRdic4LRFiRT/8QAGwEBAQEBAQEBAQAAAAAAAAAAAAECAwUEBgf/xAAvEQEAAgEDAwMDAwIHAAAAAAAAAQIRAwQhEjFBBVFhEyKBMnHwocEGFJGx0eHx/9oADAMBAAIRAxEAPwD0QRDNCgcKkmChycBFMAi4FQlMLTPIgKLKYREwijtUMBtVMQmETCYQDarlAwiophYkCEwpSEQhVQiBSEVXhEBBaAinARJOBlRe5wED44UWRwrhMjhEyICEciAimDUQdqKm1BNqCbEA2oBtRC7UALVTkMIuSkLJBC1UIW8qoRwRSEIF2lEWtCKcBEWNCEHAUU2EwggKocNUBDVVOGoo7UBDVAcKgbUQcIAWoBtQDaikLVELtVSCkIsSUtUVWWqpKstQIWopcILWtKqLQwoi1rFFg4akEiGKpJgxQgwaimDUBwgnRDKAoJlAUEVREVMKCbUClqBSxEKWKoBYo1lW5iCtzEFZYVSFZYis5sKiLGQqotEWFGh7pVmR7tEERopgxFTYiBAw1FSaeFzS9oy4ddg9fJBpL7qOktkj4aG31l1mYcPkjcIoWHy3uwD8Mq4Hi6ntUminfELFRxlhwQ6tL8H3tBB+a3FOEyq/zTrD9y3Wkf1VDz9Ar0QFf2pV4+7T2RvvdMf2U6Aju1K5j8NmHugnP7K/TO5P807oTlsloA9KKY/rlOg7M639qMjpQKykppo8faNPuY4f8XdfmpOmOjW2tprpRQ1lFMJYJW5a4fQ+RXNplbERDGgndIEMYQgpj4UVW6JUVmFAvcocNoKX0TCHFPjwTAcU/omFQ058lUkPZz5KYDCn46fqmAkrY4GOfM9jGtGSXOAAVgeK1L2g2qgp5Y7RKK6rA2tLAe6afV3Q/Baiq4G7XOXSvZ3U1Akc641TG95UDAc6SQgOd8B08sDyUxmcI4ZVVEtW7dUyvmf4ukO76+/ou2PCZ8rDDRi1skZV7q7vi11NtwGt8HZ+Xj4rnFrzqzXp+3Hd1munGnFs/d7Ou0/Z7Y4bCPaKMPcGDvaoyubLkgZc3naAMnjoQt2nEZfNoz126Ynmezw1i0xdmamraSjoYbgKF74ZXzO2RHP3Tnzx4Ba6vLjua/U0+mLTXtPHctk0zJbr9LDqWjY1tLSuqGxSEmObBwOW8uAz0Um0RzMut7TMfbzMn1T7BcqatqqO3U1BNQui+3Tghs7XuLSCMAZHBz70i0W5hYi1J6bPMPoqyCFlU+lqIoXDcyV0ZDSPPPkp116unPLpET/Ph07saupNRWWyR/8ACfEJ4x+UggO+oWL+6w6u1jCPsuBXJS1jmUVI6plIEbcZTJEHGxzQ4OGCM9VUTuM+Cpke49FMKUweiYSSGn9EwE7j0VwZZImVTKCUpgycSouWHervFaLbNX1DXuihALmsGScnCEcvBVfatJ/EbRWoA/gdNL9QB+6uFw0lR2j6hqYJWd7TQl/DXQRbSz3ZJ59VMDzNRWVdbM6WqqZpnuHJe8u/daWGLgDB8iEysuj9qo3aKj2/dDoXfr/dSv6mPDkFvjjmroI6g7YnytD3eQyu7F5mKzMOpar0/a//ABa4v9iZSikjL6WYDG/GQASSQ7OPDwIUl82laYuxrFqbVMWnBE+z09W6NrRBLLIWPIHLS5n4iPe09F5+t6jtq26LT+ccQ9XS9N3MR9SnGfDL7P6w3nTVfSgmS7CvdPVRl/dPnDvUcjpj0wvV22pTT1ItaePfu8nd6Opas9Px/TvDH19cKmgp7FRw7236nnds5DyI3DG0n8QJ29euE1prqaszp8w4bS+KXrqRiK95n+jWayo9T3G0RzXE0zqaEhzoaWDu2uPqfHy8uV1jb16vpReOueenzMfCbbe11I660mK9uqW41He7PU0RrYq6CSjqKDuo4Nw3McB90jrnOF481tG7paYzH/sf3eneOrbUpWMWjqifz0zH+zzfZROYtU0TSfvxyRn5Z/ZfXqdldywFwaeW7SpXxaUncx5a4ObjB9UiOYWJc0tl1uHtdJurZyO9bkF5811mIR32GUmJjs9QFllZ3pQyUyeqBHS+qGSd76oMZspPgqiwPQOHoNRrCP2nS9zjAyTTuI+HKLHdw7jLT5rTZXHBBA5UDxbXOw4eCEFk4jO3jjw5RXS9cD2vs5dKPw00cnyLSsx+phxujMA3+0RPky0hmw4Idjg/Nb1Yvx0Th9O1vt6zb69ZtmMRj3bSoN79gi9tfUOoWuaTGXcYBS2pFomufcr6fbSmZjpzXm0RaJtH7xnMOyWSsoZbfSvicwxGPDhuGHfDxzz81+dpq6VNPp1OJjvHy9jcaepqWm1OYnmJj+Y4c6prO68arr6q3VctNDDIGmanftcX4GQHeXmve9G0LztaRqeP5h+T/wARep02urMUiJmVt4sE1kuUF9FRUVghlDpxM/e4t6Eg9eM9F6s6UadovHh4G39U/wA/p22t4iJtHH7/AD+70mpNTW+o0tBDT1UTowMvdkfaA6AL7Nrp6WnuJ3N5j4a0b606VNtFZiY7vC02nbUy3QVN4r6qCerjE0bKeDeyJjjhpecHqfUL8zqb3U1Ne0aVYxE+fPn3fo7TNK8eP7LNJQS2fXNJSVJb3sFXscW9CC3gj3ghfR1RekWhulotETHl3o+C5NvH9qTgNLSjzcFa/qhY7S5VQuxJTk+Ejfqu0p4fQdK/NLCfNgXNiVm71VCucfNBU958kFfeHyRTsaiLQ1FMGoiqtg7+hqYvzxOb+ihD58xhrQfw8LToHiPegdg58z5IqEdeccHIQdNmaa7stcBy4294HvDT/wBLM92HGLbJHHUwyyDdGyVriD5LetW1qzFe+H07HUrp7il79on/AE+fx3dDrrnTf4bPN7XG6B8LQ2LYODzk56nORx6eq431tK2lFax93s8f0v0b1HaepU1tWkxWluq18/bNfPPnPMccznk2l+z6oqdOur668VlDBUM3xUtP1wemc+JyOBjr15XS2jp2t1WrEz+H3f5q9c1pMxH7nsVI7R13qbDcZGOc7E9NK3hsrCMcDzBb0XpbXUjE1l+X9e2t9aI1q9o4n+flka3usEFnmiLgZZWlsbOhcTwu+taKUnLyvR9pqX3EX8R3lUdM6Xtc0Vjq7dPW1jmt9orWPI7tx8W44AHPHovF3epG1041b9pf0PY6MbuLzGpETXw011rLbaamWx3+Ktnkt4EEM1LLsbURffYHjPqF8s7bVjUm+lMYtOeffHeHzTFrRhpaG6SV2rY7pO3Y+SrY/aDw0ZAA+S+ytIpp9MNUr0xEPonqMrk28d2nwGbTriM/ZdlWO8LDklI7+XnzH1XaUfQtu5oKc/6B9FzZZGFUI4KCtwVVXhEXtCCwBRTYVQcZGD0UHzzcYu5rauH/AOVRIz4BxC3DoxncHKB2u5GeiKYn14KyrqOkMVegWxO6ASxH5kKWc57uLWSejo7jTS3OkdVUjDiaAHBdwR8cHnHjhd+J7s2zjiXpqHQ1ZfKKoulFspKVznPiieC4tZ1GXe70Pgsx3edq+pdFrRTTm0U7zHj3xHl0jSeprPPa6elus9PS3O3sEMsc7g0gt8WnxBwD/dTpy70tFqxavMT2eI1lWUettYwQUMm+ho6ch0zBkyc5O39APitZ6Yc91uJ22hOpjme37sO66ctU9JObTIW1UEe8gPLiR15z48dVz+pOeXlbT1HdVvWNePttOOzd27WVDXUsV1uVkr5bhSMw+SlY0xzYGM56j16rWtSNakUvOYehfR0dLcRb6mLe2cNtoxtDfaOe/V1HST1tyqntlEjN/dtBAawZ/wBOPUreH1ak9Nulz3VVDS2TV9fS0GBBE9sjWA/yzw4t+BUns+ms5fQMDt8THfmaHfovmbaTW0Im09VDyblPK17uHQcY9Dx813R9CWSRslopHAg5iCwzLOGESALUVW5qIrwguaEFgCKbHCgGQERwXVkYi1Ld4x0FU5w+PP7rcNtQTkZVWBa4O48VAzvs9VFdN7LphNp2spicmOoPyIB/7Ulme7jt4pn0dzrIZG7dk8gB/wCRXWvZl7jSfaE22WZ9ulpZpJi0MaIm7t5xtGPU+SmMc+Hkam03FLX+hjpv7+M9/wB2u0xFBd7tdLncaZj5I/4jaZ44ByRz7sc+4rzPU9S9YrSs4ic9vPw/U+g7HTrSNOeenER+c8/8NtqT2Wwvt19oYYGukc6KaKnJDZGnPLeB+Xr71y9OvqfUnSmcxjPPOPHf5cv8Qenae40ZrEdM5/75j3hqLpqa0+yS/wCF0x9qmZje6Pb3fBGc/E9F6nROX5Pa+m7r6kfXt9sfPd7bS9RSM03RyURieHx7HB3IiAaM8eZOeV0h428mdLVvNoibzM9/bx/PhzMXmrtN0ubrBcZqKCSV2GxH7L+fLp58reX6/a0mdvT6v6sQ11MyasqdpLnzVEgbudy4ucepUl9DtNXqu50QEEdDAWxgMDjIeccZXDpaecvGt7xUROpn0DXxScOEeSU6PlYthg2jStVWSNkloHsiec/adjC34Z6oy63aaD2Skii5DWjACyky2AZhCEKCtwQLhA7eiLIl2B0QhRJM4cjKDEmqXjopJDlurLHX1N+rauHuDFUlpYDJhxOAOnwWqy1MsSm0PfaiMYdQMPk+d364aVpMs9vZtexECystrpD1BfI0D47ETqJJ2daljjL2i3zn8kdS7cfduYB+qnDXUu0bWVOl7+6ivVLLRxVmIwZBhu8dMHpzyPkk1SZiWH2o2Sott4fd4ATb63Be4DLY5cYII8jgEHzyrWfDLxVLUPo6qGpp2iOaF+5pbyM+4pfTres1t5WF9Ldq2juT7hTyltQ8kuPg7PmuWrttPU0405jiHbQ3F9C3VTya83mtvU7JbjIH92CI2DO1ueqm22unt6zFO8+Z5XW3N9f9XEfDWh0WcBzCSfujlfQ4M6npLk6N7aeCubG/7wax7Wu9/QFOGJ062mJmImYZFNYLrUOxHSEbRyXysaG+/lOqGm8slqFpq2VD+7ra8A92yH7UcPqXeLvoszbI9VRWa417hLVbImnnaMqQTh663WWmp4wWxNLvMhJRtI4Q08DCi4ZrRwPRQHCigVUkhCBUEb0QMBlAHRtdwQiqn0bHojy2odO1NTK2ahqBHI3gBwyFYXLytXR6woC7YxsrR4xnKuVxDXv1LqWk4nZJHjxdERhMphG64vHTvo/l/dF6SVuqq65Urqa4RU1RA77zJI8j+3vROlfatV1dDSPoamNlwonjb3NUdx2/lyc5HvRcMGpdped5ebBNA49Ww1hDR7grmUwp36ci/l2RrvWaref0CZkwBvNqj+zT2azxn1phIR8XZUwL2X+7SMxQNqGDwFJRtYB8mqnDfafvM1GXVNZpu819Y8YEk8DZdv8ATuP2fgFiaznu1Ewz7vHf9XwwRQWIW1kL9xmrC1jiMEYAaOisRjuzMs2y6LrqIf8As18bh+WNiD1tJbGwNAJLzjqUyjPETWtwAoE28oLGIHIRSFEIUClUFoUD4QMAgDkFD25PCoG1Ar6eGQYkiY8eTmgqDEn07aKjma20js+cQQzLXz6F07NnNtjZ/tkt+iLmWvl7NbE8/ZNZH/TNx+oVMyEfZnYAf4gq5P6p8fTCZMyzYNA6ag6WqKT/AHnOf9SrlG2prDbKUYp7fSxf0RNCmRmtgYwYa0AeQCgsYxvkgchvkgAQWtCCOQVHqgZowgYoEKBCgRUO0KCwIo4QK5EIQiBhFEBAyA4QHCAFAEBwgGERAgJRUagtaOEAcgTCBsIqFEIUCFAqodqgcIpwgVwQIWogIiYRThAwCKBRCog4RUQRERBEVGoLR0RQIyiJjCCIpSiEKBCqFQOFA7UDBFFApQKQggCIYICEUCiIgIQQoF8UREBQEBFOEBUUqqBlACgQoEKoVAwUDhFFEOOiKB6IgIqYQHCAhEQoFwgKAoAQiAqGUUQgIUVCqAUQCeEUhKIUqhSgVAwUUUQwQMEUT0QAIgoohAUEKCIAiIgKEJhBEVEBREKLBSgDkCFUKiFKAIP/2Q=='
+            },
+            {
+                id: 3,
+                name: 'Camera',
+                price: 49.99,
+                image: 'https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+
+                id: 4,
+                name: 'Leather Backpack',
+                price: 120.00,
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs2p6r0dYf68RCpk5IgFShbtUPVtfm3KTzbw&s'
+            }
+        ];
+        function renderFeaturedProducts() {
+            const container = document.getElementById('featured-products');
+            featuredProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.setAttribute('tabindex', '0');
+                card.addEventListener('click', () => {
+                    window.location.href = `product.html?id=${product.id}`;
+                });
+                card.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        window.location.href = `product.html?id=${product.id}`;
+                    }
+                });
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy" />
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        renderFeaturedProducts();
+    </script>
+</body>
+
+</html>

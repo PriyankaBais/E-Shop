@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E-Shop - Checkout</title>
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: #0077ff;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            flex-grow: 1;
+            padding: 2rem 0;
+        }
+
+        /* Header */
+        header {
+            background-color: #0a2540;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            font-weight: 600;
+        }
+
+        nav a {
+            color: white;
+            font-size: 1rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #0077ff;
+            color: white;
+        }
+
+        /* Checkout Form */
+        h1 {
+            text-align: center;
+            color: #0a2540;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            user-select: none;
+        }
+
+        form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            user-select: none;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #0a2540;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.6rem;
+            margin-bottom: 1.3rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        textarea {
+            min-height: 80px;
+        }
+
+        button[type="submit"] {
+            background-color: #0077ff;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 119, 255, 0.5);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 18px rgba(0, 86, 179, 0.7);
+        }
+
+        .confirmation {
+            margin-top: 2rem;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-align: center;
+            user-select: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a2540;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo" onclick="location.href='index.html'">E-Shop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html" id="cart-link">Cart</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Checkout</h1>
+        <form id="checkout-form" novalidate>
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Your full name" />
+
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com" />
+
+            <label for="address">Shipping Address *</label>
+            <textarea id="address" name="address" required placeholder="Your shipping address"></textarea>
+
+            <label for="payment">Payment Method *</label>
+            <select id="payment" name="payment" required>
+                <option value="" disabled selected>Select payment method</option>
+                <option value="credit-card">Credit Card</option>
+                <option value="debit-card">Debit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+
+            <button type="submit">Place Order</button>
+        </form>
+        <div class="confirmation" id="confirmation" style="display:none;" aria-live="polite"></div>
+    </main>
+
+    <footer>
+        &copy; 2024 E-Shop. All rights reserved.
+    </footer>
+
+    <script>
+        const cartLink = document.getElementById('cart-link');
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || {};
+            const count = Object.values(cart).reduce((acc, qty) => acc + qty, 0);
+            cartLink.textContent = `Cart (${count})`;
+        }
+
+        document.getElementById('checkout-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = e.target;
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Simulate order processing
+            localStorage.removeItem('cart');
+            updateCartCount();
+
+            form.style.display = 'none';
+
+            const confirmation = document.getElementById('confirmation');
+            confirmation.style.display = 'block';
+            confirmation.textContent = 'Thank you for your order! Your purchase has been received and is being processed.';
+
+            // Optionally redirect after few seconds
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 7000);
+        });
+
+        updateCartCount();
+    </script>
+</body>
+
+</html>

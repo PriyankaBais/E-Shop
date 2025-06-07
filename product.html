@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E-Shop - Product Details</title>
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: #0077ff;
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-grow: 1;
+            padding: 2rem 0;
+        }
+
+        /* Header */
+        header {
+            background-color: #0a2540;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            font-weight: 600;
+        }
+
+        nav a {
+            color: white;
+            font-size: 1rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #0077ff;
+            color: white;
+        }
+
+        /* Product Detail */
+        .product-detail {
+            display: flex;
+            gap: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            user-select: none;
+        }
+
+        .product-image {
+            flex: 1 1 350px;
+            max-width: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            flex: 1 1 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .product-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0a2540;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0077ff;
+        }
+
+        .product-description {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .btn-add {
+            background-color: #0077ff;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            width: max-content;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgb(0 119 255 / 0.5);
+            align-self: flex-start;
+        }
+
+        .btn-add:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 18px rgb(0 86 179 / 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a2540;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .product-detail {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-info {
+                align-items: center;
+                text-align: center;
+            }
+
+            .btn-add {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo" onclick="location.href='index.html'">E-Shop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html" id="cart-link">Cart</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="product-detail" id="product-detail" aria-live="polite" aria-atomic="true"
+            aria-label="Product details">
+            <!-- Product details loaded by JavaScript -->
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 E-Shop. All rights reserved.
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: 'Wireless Headphones',
+                price: 69.99,
+                image: 'https://blaupunktaudio.in/cdn/shop/files/bh41-bluetooth-wireless-over-ear-headphone-black-.0.1.jpg?v=1723530515',
+                description: 'Crystal clear sound with long-lasting battery.'
+            },
+            {
+                id: 2,
+                name: 'Smart Watch',
+                price: 149.99,
+                image: 'https://www.gonoise.com/cdn/shop/files/1_c95e5561-4f66-413d-b143-42d31821e554.webp?v=1721392308',
+                description: 'Stay connected and track your fitness in style.'
+            },
+            {
+                id: 3,
+                name: 'Camera',
+                price: 49.99,
+                image: 'https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?auto=format&fit=crop&w=600&q=80',
+                description: 'Protect your eyes with UV protection and unmatched style.'
+            },
+            {
+                id: 4,
+                name: 'Leather Backpack',
+                price: 120.00,
+                image: 'data:image/jpeg;base64,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',
+                description: 'Durable leather backpack with multiple compartments.'
+            },
+            {
+                id: 5,
+                name: 'Wireless Mouse',
+                price: 29.99,
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREAlOvH0MVyPWb_9OfuaYNDxCMRiI6ERKvdA&s',
+                description: 'Ergonomic and precise wireless mouse for daily use.'
+            },
+            {
+                id: 6,
+                name: 'Gaming Keyboard',
+                price: 89.99,
+                image: 'https://images.unsplash.com/photo-1512446733611-9099a758e2b2?auto=format&fit=crop&w=600&q=80',
+                description: 'Mechanical gaming keyboard with customizable RGB lights.'
+            }
+        ];
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || {};
+            const count = Object.values(cart).reduce((acc, qty) => acc + qty, 0);
+            const cartLink = document.getElementById('cart-link');
+            cartLink.textContent = `Cart (${count})`;
+        }
+
+        function addToCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || {};
+            if (cart[productId]) {
+                cart[productId] += 1;
+            } else {
+                cart[productId] = 1;
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Added to cart!');
+            updateCartCount();
+        }
+
+        function getProductIdFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id'));
+        }
+
+        function renderProduct(product) {
+            const container = document.getElementById('product-detail');
+            container.innerHTML = `
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.name}" />
+        </div>
+        <div class="product-info">
+          <h1 class="product-name">${product.name}</h1>
+          <div class="product-price">$${product.price.toFixed(2)}</div>
+          <p class="product-description">${product.description}</p>
+          <button class="btn-add" aria-label="Add ${product.name} to cart">Add to Cart</button>
+        </div>
+      `;
+
+            container.querySelector('.btn-add').addEventListener('click', () => addToCart(product.id));
+        }
+
+        function main() {
+            updateCartCount();
+            const productId = getProductIdFromURL();
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                renderProduct(product);
+            } else {
+                document.getElementById('product-detail').innerHTML = '<p>Product not found.</p>';
+            }
+        }
+
+        main();
+    </script>
+</body>
+
+</html>
